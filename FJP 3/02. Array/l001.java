@@ -49,6 +49,29 @@ public class l001{
         }
     }
 
+    public static void swap(int [] arr, int i, int j){
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    public static void display(int [] arr){
+        for(int i = 0; i<arr.length; i++){
+            System.out.println(arr[i]);
+        }
+    }
+
+
+    public static void reverse(int [] arr){
+        int i = 0;
+        int j = arr.length-1;
+        while(i<=j){
+            swap(arr, i, j);        
+            i++;
+            j--;
+        }
+    }
+
 
 
 
@@ -59,7 +82,10 @@ public class l001{
         for(int i = 0; i<n; i++){
             arr[i] = scn.nextInt();
         } 
-        barChart(arr);
+        // barChart(arr);
+        reverse(arr);
+        display(arr);
+
 
         
     }
