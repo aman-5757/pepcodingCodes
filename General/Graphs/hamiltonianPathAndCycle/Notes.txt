@@ -1,0 +1,28 @@
+Steps:
+
+0. from calling function from main.. I have added src initially in psf.
+
+1. for all unvisited nbr of src, call hamPath
+
+for(Edge e : graph[src]){
+           int nbr = e.nbr;
+           if(!vis.contains(nbr)){
+               hamPath(nbr, graph, vis, psf + nbr, osrc);
+           }
+           
+       }
+
+
+2. Mark and Unmark before calling
+vis.add(src);
+
+
+
+vis.remove(src);
+
+
+3. Think for base case: 
+We have used HashSet<> because we can take advantage of hs.size() it will give the count of visited vtx.
+If we do not use the HashSet then we must use boolean vis and count of vis.
+
+4. In base case we checked for cycle, if there is cycle then SYSO() accordingly. Or for path also print accordingly.
