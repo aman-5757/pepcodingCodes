@@ -246,6 +246,37 @@ int numDecodings(string s , int idx, vector<int> & dp){
     return dp[idx] = count;
 }
 
+int numDecodings_tabu(string s , int IDX, vector<int> & dp){
+    for(int idx = dp.size()-1; idx >=0 ; idx--){
+        if(idx == s.length()){
+            dp[idx] = 1;
+            continue;
+        }
+
+       
+
+        char ch = s[idx];
+
+        if(ch == '0'){
+            dp[idx] = 0; 
+            continue;
+        }
+
+        int count = dp[idx+1]; //numDecodings(s, idx+1 ,dp);
+
+        if(idx < s.length()-1){
+            char ch1 = s[idx+1];
+            int num = (ch-'0') * 10 + (ch1 - '0');
+            if(num<=26){
+                count += dp[idx+2];//numDecodings(s, idx+ 2, dp);
+            }
+        }
+        dp[idx] = count;
+    }
+    return dp[IDX];
+    
+}
+
 int numDecodings(string s){
     int n = s.length();
     vector<int> dp(n+1, -1);
