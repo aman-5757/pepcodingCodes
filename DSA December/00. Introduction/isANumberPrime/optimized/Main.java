@@ -10,10 +10,13 @@ import java.util.*;
           
           int n = scn.nextInt();    //17
           int factor = 0;           //count of factor
-          for(int i = 2; i*i<= n; i++){
+          for(int i = 1; i*i<= n; i++){
               if(n%i == 0){
                   factor++;
-                  break;
+                  if(factor == 2){
+                      break;
+                  }
+                  
               }
           }
           
