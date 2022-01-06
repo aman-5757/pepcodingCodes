@@ -15,7 +15,13 @@ public static void main(String[] args) {
              System.out.print("\t");
          }
          for(int cst = 1; cst <= star; cst++){
-             System.out.print("*\t");
+             if(i > 1 && i <= n/2 && cst > 1 && cst < star){
+               System.out.print("\t");  
+             }
+             else{
+              System.out.print("*\t");
+
+             }
          }
          //update
          if(i <= n/2){
