@@ -34,7 +34,10 @@ public class Main{
         // function1();
         // function2(100);
         // int ans = function3();
-        int ans = function4(10,20,50);
+        int x = 10;
+        int y = 20;
+        int z = 50;
+        int ans = function4(x,y,z);
         System.out.println(ans);
 
 
