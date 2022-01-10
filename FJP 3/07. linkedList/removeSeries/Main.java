@@ -83,8 +83,6 @@ public class Main {
         return temp.data;
       }
     }
-    
-    
 
     public void addFirst(int val) {
       Node temp = new Node();
@@ -120,16 +118,37 @@ public class Main {
         size++;
       }
     }
-
-    //my function
-    private Node getNodeAt(int idx){
-        // complete
+    
+    private Node getNodeAt(int idx) {
+      if (size == 0) {
+        System.out.println("List is empty");
+        return null;
+      } else if (idx < 0 || idx >= size) {
+        System.out.println("Invalid arguments");
+        return null;
+      } else {
+        Node temp = head;
+        for (int i = 0; i < idx; i++) {
+          temp = temp.next;
+        }
+        return temp;
+      }
     }
+    
     public void removeLast(){
-      // write your code here
-    }
-    public void removeFirst(){
-      // write your code here
+      if(size == 0){
+        System.out.println("List is empty");      
+      }
+      else if(size == 1){
+          head = null;
+          tail = null;
+      }
+      else{
+          Node secLastNode = getNodeAt(size-2);
+          secLastNode.next = null;
+          tail = secLastNode;
+      }
+      size--;
     }
   }
 
