@@ -37,7 +37,7 @@ public static void sumOf2Array(int [] a, int [] b){
         
     }
     
-    if(carry > 1)
+    if(carry > 0)
         System.out.println(carry);
     for(int p = 0; p<size; p++){
         System.out.println(c[p]);
