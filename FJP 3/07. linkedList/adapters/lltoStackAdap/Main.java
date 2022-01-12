@@ -21,45 +21,31 @@ public class Main {
     }
 
     int pop() {
-      return list.removeFirst();
+        if(list.size() == 0)
+        {
+            System.out.println("Stack underflow");
+            return -1; 
+        }
+        else{
+            return list.removeFirst();
+        }
+      
     }
 
     int top() {
-     return list.getFirst();
+     if(list.size() == 0)
+        {
+            System.out.println("Stack underflow");
+            return -1; 
+        }
+        else{
+            return list.getFirst();
+        }
     }
   }
   
   
-  push 10
-push 20
-push 5
-push 8
-push 2
-push 4
-push 11
-top
-size
-pop
-top
-size
-pop
-top
-size
-pop
-top
-size
-pop
-top
-size
-pop
-top
-size
-pop
-top
-size
-pop
-quit
-
+ 
   public static void main(String[] args) throws Exception {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     LLToStackAdapter st = new LLToStackAdapter();
