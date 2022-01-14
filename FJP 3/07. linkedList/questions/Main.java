@@ -214,6 +214,21 @@ public class Main {
       }
       return slow.data;
     }
+
+
+    //2. Mid of LL
+    public int mid(){
+      Node slow = head;
+      Node fast = head;
+      
+      while(fast.next != null && fast.next.next != null){
+          slow = slow.next;
+          fast = fast.next.next;
+      }
+      return slow.data;
+    }
+
+    //3. Merge two sorted linkedlist
   }
 
   public static void main(String[] args) throws Exception {
