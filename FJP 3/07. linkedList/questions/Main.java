@@ -257,10 +257,32 @@ public class Main {
     }
 
     //4. Special Mid ~ Return Node
-    public static Node midNode(Node head, Node start) {
-
+    public static Node midNode(Node head, Node tail) {
+        Node slow = head;
+        Node fast = head;
+        
+        while(fast != tail && fast.next != tail){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
 
   }
+
+    //5. Merge Sort of LL
+  public static LinkedList mergeSort(Node head, Node tail){
+      if( head == tail ){
+          LinkedList base = new LinkedList();
+          base.addFirst(head.data);
+          return base;
+      }
+      
+      Node mid = midNode(head, tail);
+      
+      LinkedList left = mergeSort(head, mid);         //left
+      LinkedList right = mergeSort(mid.next, tail);    //right
+      return mergeTwoSortedLists(left, right);
+    }
 
   public static void main(String[] args) throws Exception {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
