@@ -257,7 +257,7 @@ public class Main {
     }
 
     //4. Special Mid ~ Return Node
-    public static Node midNode(Node head, Node tail) {
+    public static Node midNode(Node head, Node start) {
 
 
   }
