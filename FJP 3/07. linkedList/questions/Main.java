@@ -231,12 +231,9 @@ public class Main {
     //3. Merge two sorted linkedlist
     public static LinkedList mergeTwoSortedLists(LinkedList l1, LinkedList l2) {
             LinkedList l3 = new LinkedList();
-            
             //c1 is current 1 and c2 is current 2
-            
             Node c1 = l1.head;
             Node c2 = l2.head;
-            
             while(c1 != null && c2 != null){
                 if(c1.data < c2. data){
                     l3.addLast(c1.data);
@@ -247,20 +244,22 @@ public class Main {
                     c2 = c2.next;
                 }
             }
-            
             while(c1 != null){
                 l3.addLast(c1.data);
                 c1 = c1.next;
             }
-            
             while(c2 != null){
                 l3.addLast(c2.data);
                 c2 = c2.next;
             }
-            
             return l3;
             
-        }
+    }
+
+    //4. Special Mid ~ Return Node
+    public static Node midNode(Node head, Node tail) {
+
+
   }
 
   public static void main(String[] args) throws Exception {
