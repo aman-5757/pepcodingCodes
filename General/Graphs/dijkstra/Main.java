@@ -1,5 +1,6 @@
+import java.util.ArrayList;
 public class Main{
-    public class Edge{
+    public static class Edge{
         int v;
         int w;
         Edge(){
@@ -10,16 +11,16 @@ public class Main{
         }
     }
 
-    public static void addEdge(ArrayList<Integer>[] graph, int u, int v, int w){
+    public static void addEdge(ArrayList<Edge>[] graph, int u, int v, int w){
         graph[u].add(new Edge(v,w));
         graph[v].add(new Edge(u,w));
     }
 
-    public static void display(ArrayList<Integer>[] graph, int N){
+    public static void display(ArrayList<Edge>[] graph, int N){
         StringBuilder sb = new StringBuilder();
-        fo(int i = 0; i<N; i++){
+        for(int i = 0; i<N; i++){
             sb.append(i + " -> ");
-            for(Edge e : graph){
+            for(Edge e : graph[i]){
                 sb.append("(" + e.v + ", " + e.w +") ");
 
             }
@@ -30,9 +31,21 @@ public class Main{
 
     }
 
-    public static void main(Stirng [] args){
+    public static class dijPair{
+
+    }
+
+    public static dijkstra(ArrayList<Edge>[] graph, int N, int src){
+        boolean [] vis = new boolean[N];
+        int [] costArray = new int[N];
+        Arrays.fill(costArray, (int)1e9);
+
+        PriorityQueue<dijPair> 
+    }
+
+    public static void main(String [] args){
         int N = 9;
-        ArrayList<Integer>[] graph = new ArrayList[N];
+        ArrayList<Edge>[] graph = new ArrayList[N];
         for(int i = 0; i<N; i++)
             graph[i] = new ArrayList<>();
         
