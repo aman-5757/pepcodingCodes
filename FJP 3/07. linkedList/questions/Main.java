@@ -284,6 +284,23 @@ public class Main {
       return mergeTwoSortedLists(left, right);
     }
 
+    //6. Remove Duplicates
+     public void removeDuplicates(){
+      LinkedList nl = new LinkedList();
+      while(this.size > 0){
+          int val = this.getFirst();
+          this.removeFirst();
+          
+          if(nl.size == 0 || nl.tail.data != val){
+             nl.addLast(val); 
+          }
+      }
+      this.head = nl.head;
+      this.tail = nl.tail;
+      this.size = nl.size;
+    }
+  }
+
   public static void main(String[] args) throws Exception {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     LinkedList list = new LinkedList();
