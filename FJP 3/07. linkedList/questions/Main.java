@@ -286,6 +286,7 @@ public class Main {
 
     //6. Remove Duplicates
      public void removeDuplicates(){
+       //m
       LinkedList nl = new LinkedList();
       while(this.size > 0){
           int val = this.getFirst();
