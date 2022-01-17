@@ -340,6 +340,45 @@ public class Main {
         
         
     }
+
+    public void kReverse(int k) {
+      if(k > this.size){
+          return;
+      }
+      LinkedList ans = new LinkedList();
+      while( this.size >= k ){
+          LinkedList tmp = new LinkedList();
+          for(int i = 0; i<k; i++){
+              int val = this.getFirst();
+              this.removeFirst();
+              tmp.addFirst(val);
+          }
+          
+          if(ans.size == 0){
+              ans = tmp;
+          }
+          else{
+              ans.tail.next = tmp.head;
+              ans.tail = tmp.tail;
+              ans.size += tmp.size;
+          }
+          
+      }
+      
+      //left elements
+      if(this.size > 0){
+          ans.tail.next = this.head;
+          ans.tail = this.tail;
+          ans.size += this.size;
+      }
+      
+      
+      this.head = ans.head;
+      this.tail = ans.tail;
+      this.size = ans.size;
+    }
+  }
+
   }
 
   public static void main(String[] args) throws Exception {
