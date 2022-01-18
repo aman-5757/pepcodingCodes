@@ -72,7 +72,7 @@ public class Main {
     reverse(a, n-k , n-1);
     reverse(a, 0 , n-1);
     
-  }
+    }
 
     
     public static void from1Dto2D(int [] oneD, int [][] arr, int s){
