@@ -284,6 +284,209 @@ public class Main {
       return mergeTwoSortedLists(left, right);
     }
 
+    //6. Remove Duplicates
+     public void removeDuplicates(){
+       //m
+      LinkedList nl = new LinkedList();
+      while(this.size > 0){
+          int val = this.getFirst();
+          this.removeFirst();
+          
+          if(nl.size == 0 || nl.tail.data != val){
+             nl.addLast(val); 
+          }
+      }
+      this.head = nl.head;
+      this.tail = nl.tail;
+      this.size = nl.size;
+    }
+
+
+    //7. Odd Even
+    public void oddEven(){
+      LinkedList odd = new LinkedList();
+      LinkedList even = new LinkedList();
+      
+      while(this.size > 0){
+          int val = this.getFirst();
+          this.removeFirst();
+          
+          if(val % 2 == 0){
+              //even
+              even.addLast(val);
+          }
+          else{
+              //odd
+              odd.addLast(val);
+          }
+          
+      }
+       if(odd.size > 0 && even.size > 0 ){
+            odd.tail.next = even.head;
+            this.head = odd.head;
+            this.tail = even.tail;
+            this.size = odd.size + even.size;
+        }
+        else if(odd.size > 0){
+            this.head = odd.head;
+            this.tail = odd.tail;
+            this.size = odd.size;  
+        }
+        else if(even.size > 0){
+            this.head = even.head;
+            this.tail = even.tail;
+            this.size = even.size;    
+        }
+        
+        
+    }
+
+
+    //k reverse
+    public void kReverse(int k) {
+      if(k > this.size){
+          return;
+      }
+      LinkedList ans = new LinkedList();
+      while( this.size >= k ){
+          LinkedList tmp = new LinkedList();
+          for(int i = 0; i<k; i++){
+              int val = this.getFirst();
+              this.removeFirst();
+              tmp.addFirst(val);
+          }
+          
+          if(ans.size == 0){
+              ans = tmp;
+          }
+          else{
+              ans.tail.next = tmp.head;
+              ans.tail = tmp.tail;
+              ans.size += tmp.size;
+          }
+          
+      }
+      
+      //left elements
+      if(this.size > 0){
+          ans.tail.next = this.head;
+          ans.tail = this.tail;
+          ans.size += this.size;
+      }
+      
+      
+      this.head = ans.head;
+      this.tail = ans.tail;
+      this.size = ans.size;
+    }
+  }
+  //reverse ll (pointer - recursive)
+  private void reversePRHelper(Node node){
+      if(node == null){
+          return;
+      }
+      
+      reversePRHelper(node.next);
+      if(node != tail){
+       node.next.next = node;  
+      }
+    }
+
+    public void reversePR(){
+      reversePRHelper(this.head);
+      //swap H T
+      Node tmp = head;
+      head = tail;
+      tail = tmp;
+    }
+
+
+  //Ispalindromic
+  Node pleft;
+    private boolean palindromeHelper(Node right){
+        if(right == null){
+            return true;
+        }
+        
+        boolean recAns = palindromeHelper(right.next);
+        if(recAns == false){
+            return false;
+        }
+        if(pleft.data != right.data){
+            return false;
+        }
+        else{
+            //same
+            pleft = pleft.next;
+            return true;
+        }
+        
+        
+    }
+    
+    
+    public boolean IsPalindrome() {
+      pleft = this.head;
+      return palindromeHelper(head);
+    }
+
+  //fold
+  Node fleft;
+    private void foldHelper(Node right, int count){
+        if(right == null){
+            return;
+        }
+        
+        foldHelper(right.next, count + 1);
+        if(count > size / 2){
+           Node temp = fleft.next;
+            fleft.next = right;
+            right.next = temp;
+            fleft = temp; 
+        }
+        else if( count == size / 2){
+            tail = right;
+            tail.next = null;
+        }
+        
+    }
+    
+    
+    
+    public void fold() {
+      fleft = head;
+      foldHelper(head, 0);
+    }
+
+
+
+  //find intersection
+  public static int findIntersection(LinkedList one, LinkedList two){
+      Node c1 = one.head;
+      Node c2 = two.head;
+      
+      int d = Math.abs(one.size-two.size);
+      if(one.size > two.size ){
+          for(int i = 0; i<d; i++)
+            c1 = c1.next;
+      }
+      else{
+          for(int i = 0; i<d; i++){
+              c2 = c2.next;
+          }
+      }
+      
+      while(c1 != c2){
+          c1 = c1.next;
+          c2 = c2.next;
+      }
+      return c2.data; // c1.data;
+      
+    }
+  }
+
+  }
+
   public static void main(String[] args) throws Exception {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     LinkedList list = new LinkedList();
