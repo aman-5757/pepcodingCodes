@@ -67,8 +67,8 @@ public static void main(String[] args) throws Exception {
     //     dp[i] = -1;
     // }
     
-    Arrays.fill(dp, -1);
-    int ans = fiboM(n,dp);
+    // Arrays.fill(dp, -1);
+    int ans = fiboT(n,dp);
     
     System.out.println(ans);
  }
