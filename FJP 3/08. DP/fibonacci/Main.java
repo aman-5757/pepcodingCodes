@@ -34,6 +34,25 @@ public static int fiboM(int n, int [] dp){
 }
 
 
+public static int fiboT(int N, int [] dp){
+    
+    for(int n = 0 ; n < dp.length; n++){
+        if(n <= 1){
+            dp[n]= n;
+            continue;
+        }
+        
+        int nm1 = dp[n-1];//fiboM(n-1, dp);
+        int nm2 = dp[n-2];//fiboM(n-2, dp);
+        dp[n] = nm1 + nm2;
+    }
+    
+    return dp[N];
+    
+    
+}
+
+
 
 public static void main(String[] args) throws Exception {
     Scanner scn = new Scanner(System.in);
