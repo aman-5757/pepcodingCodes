@@ -1,8 +1,14 @@
-import java.util.*;
+import java.util.Scanner;
 public class Main{
     
     public static void main(String [] args){
-        StringBuilder sb = new StringBuilder("pepcoding");
+        Scanner scn =  new Scanner(System.in);
+        // String s = ;
+
+
+        StringBuilder  sb = new StringBuilder(scn.next());
+        
+        // StringBuilder sb = new StringBuilder("pepcoding");
         //update --  replace
         sb.setCharAt(3, 'z');
         
