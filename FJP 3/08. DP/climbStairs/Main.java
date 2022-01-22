@@ -39,13 +39,13 @@ public class Main {
         int count = 0;
         
         if(n-1 >= 0){
-            count += climbStairR(n-1);
+            count += climbStairM(n-1);
         }
         if(n-2 >= 0){
-            count += climbStairR(n-2);
+            count += climbStairM(n-2);
         }
         if(n-3 >= 0){
-            count += climbStairR(n-3);
+            count += climbStairM(n-3);
         }
         return dp[n] = count;
         
