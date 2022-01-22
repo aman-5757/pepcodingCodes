@@ -19,9 +19,31 @@ public class Main {
 	}
 
 	public static String compression2(String str){
-		// write your code here
+		StringBuilder sb = new StringBuilder();
+		sb.append(str.charAt(0));
+		int count = 1;
+		
+		for(int i = 1; i<str.length(); i++){
+		    char curr = str.charAt(i);
+		    char prev = str.charAt(i-1);
+		    
+		    if(prev == curr){
+		        count++;
+		    }
+		    else{
+		        if(count > 1){
+		            sb.append(count);
+		        }
+		        count = 1;
+		        sb.append(curr);
+		    }
+		}
+		if(count > 1){
+		  sb.append(count);
+		}
+		
 
-		return null;
+		return sb.toString();
 	}
 	public static void main(String[] args) {
 		Scanner scn = new Scanner(System.in);
