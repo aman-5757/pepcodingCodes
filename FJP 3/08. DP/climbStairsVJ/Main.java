@@ -2,6 +2,17 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
+    public static int solveR(int [] arr, int src, int dest){
+        if(src == dest){
+            return 1;
+        }  
+        int count = 0;
+        for(int jump = 1; jump<=arr[src] && jump + src <= dest; jump++){
+            count += solveR(arr, src + jump, dest);
+        }
+        return count;
+    }
+
 
     public static int solveM(int [] arr, int src, int dest, int [] dp){
         if(src == dest){
