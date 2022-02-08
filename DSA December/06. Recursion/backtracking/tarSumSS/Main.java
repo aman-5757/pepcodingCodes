@@ -28,6 +28,7 @@ public class Main {
         }   
         //include
         printTargetSumSubsets(arr, idx+1, set + arr[idx] +", ", sos + arr[idx], tar );
+        //exclude
         printTargetSumSubsets(arr, idx+1, set, sos, tar );
     }
 
