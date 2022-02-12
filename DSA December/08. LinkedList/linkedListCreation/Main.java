@@ -149,6 +149,38 @@ public class Main {
       }
     }
 
+    private Node getNodeAt(int idx){
+      if (size == 0) {
+        return null;
+      } 
+      else if (idx < 0 || idx >= size) {
+        return null;
+      } 
+      else {
+        Node temp = head;
+        for (int i = 0; i < idx; i++) {
+          temp = temp.next;
+        }
+        return temp;
+      }
+    }
+
+    public void removeLast(){
+      if(size == 0)
+        return;
+      else if(size == 1){
+        head = null;
+        tail = null;
+        size--;
+      }
+      else{
+        Node sln = getNodeAt(size-2);
+        sln.next = null;
+        tail = sln;
+        size--;
+      }
+    }
+
 
 
 
