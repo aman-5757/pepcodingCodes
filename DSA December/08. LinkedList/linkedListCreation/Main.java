@@ -35,7 +35,21 @@ public class Main {
       size++;
     }
 
-    
+    public int size(){
+      return size;
+    }
+
+    public void display(){
+
+      Node curr = head;
+      while(curr != null){
+        System.out.print(curr.data + " ");
+        curr = curr.next;
+      }
+      System.out.println();
+    }
+
+
   }
 
   public static void testList(LinkedList list) {
