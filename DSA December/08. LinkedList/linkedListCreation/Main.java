@@ -34,6 +34,8 @@ public class Main {
       }
       size++;
     }
+
+    
   }
 
   public static void testList(LinkedList list) {
