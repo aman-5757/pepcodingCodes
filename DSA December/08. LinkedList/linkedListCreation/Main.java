@@ -65,6 +65,23 @@ public class Main {
     }
 
 
+    public void removeFirst(){
+      if(size == 0){
+        System.out.println("List is empty");
+        return;
+      }
+      else if(size == 1){
+        head = null;
+        tail = null;
+
+      }
+      else{
+        head = head.next;
+      }
+      size--;
+    }
+
+
 
   }
 
