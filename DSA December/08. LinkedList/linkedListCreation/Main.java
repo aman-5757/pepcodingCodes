@@ -75,9 +75,6 @@ public class Main {
       }
     }
 
-
-    
-
     public int size(){
       return size;
     }
@@ -149,7 +146,7 @@ public class Main {
       }
     }
 
-    private Node getNodeAt(int idx){
+    private Node getNodeAt(int idx){      //helper function
       if (size == 0) {
         return null;
       } 
