@@ -178,11 +178,10 @@ public class Main {
       }
     }
 
-
-
-
-
   }
+
+
+
 
   public static void testList(LinkedList list) {
     for (Node temp = list.head; temp != null; temp = temp.next) {
