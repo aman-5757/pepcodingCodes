@@ -19,6 +19,8 @@ public class Main {
                 hm.put(ch, 1);
             }
 
+            hm.put(ch, hm.getOrDefault(ch, 0) + 1);
+
 
         }
         char maxFreqChar = s.charAt(0);
