@@ -33,6 +33,7 @@ public class Main {
     // System.out.println(isBangladeshPresent);
     
     //keySet
+    HashSet<String> keys = hm.keySet(); 
     for(String key : hm.keySet() ){
         // System.out.println(key);
     }
