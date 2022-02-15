@@ -41,7 +41,8 @@ class Solution {
             prev.next = two;
         }
         
-        return head.next;
+        head = head.next;
+        return head;
     
         
         
