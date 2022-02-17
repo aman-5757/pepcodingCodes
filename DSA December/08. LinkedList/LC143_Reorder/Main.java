@@ -50,8 +50,8 @@ class Solution {
     
     
     public void reorderList(ListNode head) {
-        if(){
-            
+        if(head == null || head.next == null ){
+            return;
         }
         //step 1
         ListNode mid = middleNode(head);
