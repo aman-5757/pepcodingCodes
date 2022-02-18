@@ -17,6 +17,7 @@ public class Main {
          this.val = val;
       }
 
+
       public int compareTo(triplet o){
          return this.val - o.val;
       }
