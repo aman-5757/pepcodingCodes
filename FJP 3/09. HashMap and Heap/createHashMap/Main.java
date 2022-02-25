@@ -47,7 +47,7 @@ public class Main {
       return -1;
     }
 
-    private void rehashing(){
+    private void rehashing()throws Exception{
       LinkedList<HMNode> [] prevBuckets = buckets;
       initbuckets(2 * prevBuckets.length);
       size = 0;
@@ -88,19 +88,61 @@ public class Main {
     }
 
     public V get(K key) throws Exception {
-      // write your code here
+      int bi = findBucketIdx(key);        //bucketIdx
+      int di = findDataIdxInBucket(key, bi);  //dataIdx
+
+
+      if(di == -1)
+        return null;
+      else{
+        LinkedList<HMNode> tmp = buckets[bi];
+        HMNode curr = tmp.get(di);
+        return curr.value;
+      }
     }
 
     public boolean containsKey(K key) {
-      // write your code here
+      int bi = findBucketIdx(key);        //bucketIdx
+      int di = findDataIdxInBucket(key, bi);  //dataIdx
+
+
+      if(di == -1)
+        return false;
+      else{
+        return true;
+      }
     }
 
     public V remove(K key) throws Exception {
-      // write your code here
+      int bi = findBucketIdx(key);        //bucketIdx
+      int di = findDataIdxInBucket(key, bi);  //dataIdx
+
+      if(di == -1){
+        //key is not present in HashMap
+        return null;
+      }
+      else{
+        //key is present in HashMap
+        LinkedList<HMNode> tmp = buckets[bi];
+        HMNode curr = tmp.get(di);
+        V val = curr.value;
+        tmp.remove(di);
+        size--;
+        return val;
+
+      }
     }
 
     public ArrayList<K> keyset() throws Exception {
-      // write your code here
+      ArrayList<K> ks = new ArrayList<K>();
+      for(int bi = 0; bi<buckets.length; bi++){
+        for(int p = 0; p<buckets[bi].size(); p++){
+          HMNode curr = buckets[bi].get(p);
+          ks.add(curr.key);
+        }
+
+      }
+      return ks;
     }
 
     public int size() {
