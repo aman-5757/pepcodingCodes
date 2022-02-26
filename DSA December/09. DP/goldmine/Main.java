@@ -31,6 +31,43 @@ public class Main {
     }
 
 
+
+    public static int goldmineTab(int [][] arr){
+        int n = arr.length;
+        int m = arr[0].length;
+
+        int [][] dp = new int[n][m];
+
+        for(int j = m-1; j>=0 ; j-- ){
+            for(int i = 0; i<n; i++){
+                if(j == m-1){
+                    dp[i][j] = arr[i][j];
+                }
+                else if(i == 0){
+                    dp[i][j] = arr[i][j] + Math.max(dp[i][j+1], dp[i+1][j+1]);
+                }
+                else if(i == n-1){
+                    dp[i][j] = arr[i][j] + Math.max(dp[i][j+1], dp[i-1][j+1]);
+                }
+                else{
+                    int max = -1;
+                    max = Math.max(max, Math.max(dp[i][j+1], Math.max(dp[i-1][j+1], dp[i+1][j+1])));
+                    dp[i][j] = arr[i][j] + max;
+                }
+            }
+        }
+        
+        int ans =-1;
+        for(int i = 0; i<n; i++){
+            ans = Math.max(dp[i][0], ans);
+        }
+        return ans;
+
+
+
+    }
+
+
     public static void main(String[] args) throws Exception {
         Scanner scn = new Scanner(System.in);
         int n = scn.nextInt();
@@ -43,17 +80,19 @@ public class Main {
             }
         }
 
-        int [][] dp = new int[n][m];
+        // int [][] dp = new int[n][m];
+        // int max = -1;
+        // for(int i = 0; i<n; i++){
+        //     // int ans = goldmine(i,0, arr);
+        //     int ans = goldmineM(i,0, arr, dp);
+        //     max = Math.max(ans, max);
+        // }
+        // System.out.println(max);
 
 
-        int max = -1;
-        for(int i = 0; i<n; i++){
-            // int ans = goldmine(i,0, arr);
-            int ans = goldmineM(i,0, arr, dp);
-            max = Math.max(ans, max);
-        }
 
-        System.out.println(max);
+        int ans = goldmineTab(arr);
+        System.out.println(ans);
 
     }
 
