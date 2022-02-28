@@ -1,6 +1,6 @@
 public class Main
 {
-    public static int max(int... arr){
+    public static int max(int...arr){
         int m = -(int)1e9;
         for(int e : arr)
             m = Math.max(m, e);
