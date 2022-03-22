@@ -28,6 +28,17 @@ public class Main{
         }
     }
 
+    public static int height(Node root){
+        if(root == null){
+            return -1;
+        }
+        int lh = height(root.left);
+        int rh = height(root.right);
+
+        int myAns = Math.max(lh, rh) + 1;
+        return myAns;
+    }
+
     public static void display(Node root){
         if(root == null)
             return;
@@ -96,7 +107,8 @@ public class Main{
         }
         
 
-        display(root);
+        // display(root);
+        System.out.println(height(root));
 
     }
 }
