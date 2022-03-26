@@ -78,16 +78,49 @@ public class Main {
     display(node.left);
     display(node.right);
   }
-
-  public static void printKLevelsDown(Node node, int k){
-        if(node == null || k < 0){
+  
+  public static ArrayList<Node> nodeToRootPath(Node node, int data){
+       if(node == null){
+            return new ArrayList<>();
+        }
+        if(node.data == data){
+            ArrayList<Node> base = new ArrayList<>();
+            base.add(node);
+            return base;
+        }
+        ArrayList<Node> leftAns = nodeToRootPath(node.left, data);
+        if(leftAns.size() > 0){
+            leftAns.add(node);
+            return leftAns;
+        }
+        ArrayList<Node> rightAns = nodeToRootPath(node.right,data);
+        if(rightAns.size()> 0){
+            rightAns.add(node);
+            return rightAns;
+        }
+        return new ArrayList<>();
+      }
+      
+    public static void printKLevelsDown(Node node, int k, Node blocker ){
+        if(node == null || k < 0 || node == blocker){
             return;
         }
         if(k == 0){
             System.out.println(node.data);
         }
-        printKLevelsDown(node.left, k-1);
-        printKLevelsDown(node.right, k-1);
+        printKLevelsDown(node.left, k-1, blocker);
+        printKLevelsDown(node.right, k-1, blocker);
+  }
+
+  public static void printKNodesFar(Node node, int data, int k) {
+    ArrayList<Node> n2R = nodeToRootPath(node, data);
+    Node blocker = null;
+    
+    for(int i = 0; i<n2R.size(); i++){
+        Node n = n2R.get(i);
+        printKLevelsDown(n, k-i, blocker);
+        blocker = n;
+    }
   }
 
   public static void main(String[] args) throws Exception {
@@ -103,10 +136,11 @@ public class Main {
       }
     }
 
+    int data = Integer.parseInt(br.readLine());
     int k = Integer.parseInt(br.readLine());
 
     Node root = construct(arr);
-    printKLevelsDown(root, k);
+    printKNodesFar(root, data, k);
   }
 
 }
