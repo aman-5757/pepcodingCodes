@@ -61,7 +61,7 @@ public class Main{
         while(qu.size() > 0 ){
             //1. remove
             Node rem = qu.remove();
-
+            
             //2. Work
             System.out.print(rem.val + " ");
 
