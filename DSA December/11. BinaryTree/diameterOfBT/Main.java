@@ -71,3 +71,44 @@ class Solution {
 
 
 // Approach 3
+public int [] diameter(TreeNode node){
+        if(node == null){
+            return new int[]{-1, 0};
+        }
+        
+        
+        int [] la = diameter(node.left);
+        int [] ra = diameter(node.right);
+        
+        int[] my = new int[2];
+        // 0 1 -- h, d
+        
+        my[0] = Math.max(la[0] , ra[0] ) + 1;
+        int accrossNode = la[0] + ra[0] + 2; 
+        my[1] = Math.max(accrossNode, Math.max(la[1], ra[1]));
+        
+        return my;
+    }
+    
+    public int diameterOfBinaryTree(TreeNode root) {
+        int [] ans = diameter(root);
+        return ans[1];
+    }
+
+
+    // Approach 4 : static / global
+
+    static int  ans = (int)1e9;
+    public int diameter4(TreeNode root){
+        if( root == null )
+            return -1;
+
+        int lh = diameter4(root.left);
+        int rh = diameter4(root.right);
+        
+        ans = Math.max(ans, lh + rh + 2);
+
+        int myHeight = Math.max(lh,rh)+1;
+        return myHeight;
+    }
+    
