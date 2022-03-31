@@ -76,6 +76,66 @@ public class Main{
     }
 
 
+    public static void levelOrderNULL_Method(Node root){
+    Queue<Node> qu = new LinkedList<>();
+            //seeding
+            qu.add(root);
+            qu.add(null);
+
+            while(qu.size() > 0 ){
+                if(qu.size() == 1 && qu.peek() == null){
+                    break;
+                }
+                //1. remove
+                Node rem = qu.remove();
+                if(rem == null){
+                    qu.add(null);
+                    System.out.println();
+                }
+                else{
+                    System.out.print(rem.val + " ");
+
+                    //3. Add all child If possible
+                    if(rem.left != null){
+                        qu.add(rem.left);
+                    }
+                    if(rem.right != null){
+                        qu.add(rem.right);
+                    }
+                }
+                
+            }
+    }
+
+
+    public static void levelOrder3(Node root){
+        Queue<Node> qu = new LinkedList<>();
+        //seeding
+        qu.add(root);
+
+        while(qu.size() > 0 ){
+            int size = qu.size();
+            while(size-- > 0){
+                //1. remove
+                Node rem = qu.remove();
+            
+                //2. Work
+                System.out.print(rem.val + " ");
+
+                //3. Add all child If possible
+                if(rem.left != null){
+                    qu.add(rem.left);
+                }
+                if(rem.right != null){
+                    qu.add(rem.right);
+                }
+            }
+            System.out.println();
+            
+        }
+    }
+
+
     public static void main(String [] args){
         Integer [] arr = {50,25,12,null,null,37, 30, null, null, null, 75, 62, null, 70, null, null, 87, null, null };
         Node root = new Node(arr[0]);
@@ -121,7 +181,8 @@ public class Main{
 
         // display(root);
         // System.out.println(height(root));
-        levelOrder(root);
+        // levelOrder(root);
+        levelOrderNULL_Method(root);
 
     }
 }
