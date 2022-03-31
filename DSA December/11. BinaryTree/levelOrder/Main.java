@@ -182,7 +182,8 @@ public class Main{
         // display(root);
         // System.out.println(height(root));
         // levelOrder(root);
-        levelOrderNULL_Method(root);
+        levelOrder3(root);
+        // levelOrderNULL_Method(root);
 
     }
 }
