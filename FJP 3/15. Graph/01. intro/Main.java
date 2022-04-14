@@ -1,3 +1,4 @@
+import java.util.*;
 public class Main{
     public static class Edge{
         int src;
@@ -31,9 +32,30 @@ public class Main{
         addEdge(graph, 4 , 5, 2);
         addEdge(graph, 5 , 6, 3);
         addEdge(graph, 4 , 6, 8);
+       
+       //display
+       display(graph, N);
+    }
+
+
+    public static void display(ArrayList<Edge>[] graph, int N){
+        // N is number of vertex / Nodes
+        for(int n = 0; n < N; n++){
+            System.out.print(n + " -> ");
+            for(Edge e : graph[n]){
+                int u = e.src;
+                int v = e.nbr;
+                int w = e.wt;
+
+                System.out.print(u +" - " + v  + " @ " +  w + ", " );
+            }
+            System.out.println();
+        }
+
     }
 
     public static void main(String [] args){
-
+        construction();
+        
     }
 }
