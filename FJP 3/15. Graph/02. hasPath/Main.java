@@ -15,9 +15,26 @@ public class Main {
    }
    
    public static boolean hasPath(ArrayList<Edge>[] graph, int src, int dstn, boolean [] vis){
-       if(){
-           
+       if(src == dstn){
+           return true;
        }
+
+       //mark
+        vis[src] = true;
+
+        //calls
+        for(int i = 0; i<graph[src].size(); i++){
+            Edge e = graph[src].get(i);
+
+            int nbr = e.nbr;
+
+            if(vis[nbr] == false){
+                boolean recAns = hasPath(graph, nbr, dstn,vis);
+                if(recAns == true)
+                    return true;
+            }
+        }
+        return false;
    }
    
    public static void main(String[] args) throws Exception {
