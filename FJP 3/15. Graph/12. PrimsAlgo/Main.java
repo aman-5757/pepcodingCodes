@@ -43,19 +43,24 @@ public class Main {
         while(pq.size() != 0){
             //remove
             pp rem = pq.remove();
-            
-            
-            //mark
-            
-            
+
             //work
-            if(rem.p != -1)
-            {
-                // ...
+            if(vis[rem.s] == false && rem.p != -1){
+                System.out.println("["+rem.s + "-" + rem.p + "@" + rem.cost+"]" );
             }
             
             
+            //mark
+            vis[rem.s] = true;
+
             //add
+            for(Edge e : graph[rem.s]){
+                int nbr = e.nbr;
+
+                if(!vis[nbr]){
+                    pq.add(new pp(nbr, rem.s, e.wt));
+                }
+            }
             
             
         }
@@ -83,7 +88,7 @@ public class Main {
       }
 
       //code starts here
-      primsAlgo();
+      primsAlgo(graph);
    }
 
 }
