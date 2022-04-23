@@ -5,13 +5,11 @@ public class Main {
     static class pp{
         //prims pair
         int s;      //source
-        int p;          //parent
         int cost;       //cost
         
         pp(){}
-        pp(int s, int p, int cost){
+        pp(int s, int cost){
             this.s = s;
-            this.p = p;
             this.cost = cost;
         }
         
@@ -28,38 +26,45 @@ public class Main {
       }
    }
 
-    public static void primsAlgo(ArrayList<Edge>[] graph){
+    public static int primsAlgo(ArrayList<Edge>[] graph){
+        int src = 0;//source
+
         int n = graph.length;
         PriorityQueue<pp> pq = new PriorityQueue<>((a,b)->{
             return a.cost-b.cost;
         });
         
         boolean [] vis = new boolean[n];
-        
+        int minCost = 0;
+
+
         //seeding
-        pq.add(new pp(0, -1, 0));
+        pq.add(new pp(src, 0));
         
         
         while(pq.size() != 0){
             //remove
             pp rem = pq.remove();
-            
-            
-            //mark
-            
+        
             
             //work
-            if(rem.p != -1)
-            {
-                // ...
-            }
-            
+
+            if(vis[rem.s] == false)
+                minCost += rem.cost;
+
+            //mark
+            vis[rem.s] = true;
             
             //add
-            
-            
+            for(Edge e : graph[rem.s]){
+                int nbr = e.nbr;
+                int cost = e.wt;
+                if(vis[nbr] == false){
+                    pq.add(new pp(nbr, cost));
+                }
+            }
         }
-        
+        return minCost;
         
         
     }
@@ -83,7 +88,8 @@ public class Main {
       }
 
       //code starts here
-      primsAlgo();
+      int ans = primsAlgo(graph);
+      System.out.println(ans);
    }
 
 }
