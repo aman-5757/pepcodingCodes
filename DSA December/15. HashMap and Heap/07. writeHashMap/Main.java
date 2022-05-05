@@ -14,7 +14,7 @@ public class Main {
       }
     }
 
-    private int size; // n
+    private int size; // n-- number of nodes
     private LinkedList<HMNode>[] buckets; // N = buckets.length
 
     public HashMap() {
@@ -22,7 +22,7 @@ public class Main {
       size = 0;
     }
 
-    private void initbuckets(int N) {
+    private void initbuckets(int N) {       //N -- size of bucket or bucket count
       buckets = new LinkedList[N];
       for (int bi = 0; bi < buckets.length; bi++) {
         buckets[bi] = new LinkedList<>();
@@ -48,6 +48,18 @@ public class Main {
         }
 
     private void rehashing()throws Exception{
+      LinkedList<HMNode>[] prevBuckets = buckets;
+      initbuckets(prevBuckets.length * 2);
+      size = 0;
+      
+      for(int i = 0; i<prevBuckets.length;i++){
+          LinkedList<HMNode> curr = prevBuckets[i];
+          for(int j = 0; j<curr.size(); j++){
+              HMNode currEle = curr.get(j);
+              put(currEle.key, currEle.value);
+          }
+      }
+      
       
     }
 
@@ -78,23 +90,68 @@ public class Main {
     }
 
     public V get(K key) throws Exception {
-      
+      int bi = findBucketIdx(key);        //bucketIdx
+      int di = findDataIdxInBucket(key, bi);  //dataIdx
+
+      if(di == -1){
+          // nahi mila
+          return null;
+      }
+      else{
+          // index par data mil gaya
+          LinkedList<HMNode> currList = buckets[bi];
+          HMNode currEle = currList.get(di);
+          return currEle.value;
+      }
     }
 
     public boolean containsKey(K key) {
-      
+      int bi = findBucketIdx(key);        //bucketIdx   --O(1)
+      int di = findDataIdxInBucket(key, bi);  //dataIdx  --O(lamdba)
+
+      if(di == -1){
+          // nahi mila
+          return false;
+      }
+      else{
+          // index par data mil gaya
+          
+          return true;
+      }
     }
 
     public V remove(K key) throws Exception {
-      
+      int bi = findBucketIdx(key);        //bucketIdx
+      int di = findDataIdxInBucket(key, bi);  //dataIdx
+
+      if(di == -1){
+        //key nahi hai
+        return null;
+      }
+      else{
+        //key present hai
+        LinkedList<HMNode> currList = buckets[bi];
+        HMNode currEle = currList.get(di);
+        V value = currEle.value;
+        currList.remove(di);
+        size--;
+        return value;
+      }
+
     }
 
     public ArrayList<K> keyset() throws Exception {
-      
+      ArrayList<K> allKeys = new ArrayList<>();
+      for(LinkedList<HMNode> list : buckets){
+          for(HMNode curr : list){
+              allKeys.add(curr.key);
+          }
+      }
+      return allKeys;
     }
 
-    public int size() {
-      
+    public int size() { //how many nodes -- n?
+      return this.size;
     }
 
    public void display() {
