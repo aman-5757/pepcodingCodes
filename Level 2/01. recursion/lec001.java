@@ -110,16 +110,12 @@ public class lec001{
     }
 
 
-    // Leetcode 62: Unique Path
-    class Solution {
+    // Leetcode 62: Unique Path=====================================
     
-    public boolean inRange(int i, int j, int n, int m){
-        if(i < 0 || i >= n || j < 0 || j >= m)
-            return false;
-        return true;
-    }
     
-    public int mazePath_01(int sr, int sc, int dr, int dc, int [][] dir, int [][] dp){
+  
+    
+    public int uniquePath_02(int sr, int sc, int dr, int dc, int [][] dir, int [][] dp){
         if(sr == dr && sc == dc){
             // System.out.println(asf);
             return dp[sr][sc] = 1;
@@ -135,29 +131,82 @@ public class lec001{
             int c = sc + dir[d][1];
 
             if(inRange(r,c,dr + 1, dc + 1)){
-                count += mazePath_01(r,c, dr, dc, dir, dp);
+                count += uniquePath_02(r,c, dr, dc, dir, dp);
             }
         }
         return dp[sr][sc] = count;
 
     }
     
-    public int mazePath(int n, int m){
+    public int uniquePath_01(int n, int m){
         
        
         int [][] dir = {{0,1}, {1,0}};
 
         // int ans = mazePath_01(0,0,n-1,m-1,dir, dirN, "");
         int [][] dp = new int[n][m];
-        int ans = mazePath_01(0,0,n-1,m-1,dir,dp);
+        int ans = uniquePath_02(0,0,n-1,m-1,dir,dp);
         return ans;
+    }
+
+    public int uniquePaths(int n, int m) {
+        return uniquePath_01(n,m);
+    }
+
+
+
+    //LeetCode 63 ========= UNIQUE PATHS 2 =============================
+    public int uniquePathsWithObstacles_01(int sr, int sc, int dr, int dc, int [][] dir, int [][] dp, int [][] grid){
+        if(sr == dr && sc == dc){
+            // System.out.println(asf);
+            return dp[sr][sc] = 1;
+        }
+        
+        if(dp[sr][sc] != 0){
+            return dp[sr][sc];
+        }
+        
+        int count  = 0;
+        for(int d = 0; d < dir.length; d++){
+            int r = sr + dir[d][0];
+            int c = sc + dir[d][1];
+
+            if(inRange(r,c,dr + 1, dc + 1) && grid[r][c] == 0){
+                count += uniquePathsWithObstacles_01(r,c, dr, dc, dir, dp, grid);
+            }
+        }
+        return dp[sr][sc] = count;
+
+    }
+    
+    public int uniquePathsWithObstacles(int n, int m, int [][] grid){
+        
+       
+        int [][] dir = {{0,1}, {1,0}};
+
+        // int ans = mazePath_01(0,0,n-1,m-1,dir, dirN, "");
+        int [][] dp = new int[n][m];
+        int ans = uniquePathsWithObstacles_01(0,0,n-1,m-1,dir,dp, grid);
+        return ans;
+    }
+    public int uniquePathsWithObstacles(int[][] grid) {
+        int n = grid.length;
+        int m = grid[0].length;
+        
+        if(n == 0 || m == 0)
+            return 0;
+        
+        //agr start of end me block hai toh return 0
+        
+        if(grid[0][0] == 1 || grid[n-1][m-1] == 1)
+            return 0;
+            
+        
+        return uniquePathsWithObstacles(n,m,grid);
     }
     
    
-    public int uniquePaths(int n, int m) {
-        return mazePath(n,m);
-    }
-}
+    
 
     public static void main(String [] args){
         // mazePath();
