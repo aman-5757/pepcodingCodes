@@ -96,9 +96,10 @@ public class lec001{
 
     }
 
+
     public static void floodFill(){
-        int n = 3;
-        int m = 3;
+        int n = 2;
+        int m = 2;
         String [] dirN = {"A", "B", "C", "D", "E", "F", "G", "H"};
         int [][] dir = {{-1, -1}, {-1,0}, {-1,1}, {0,1}, {1,1}, {1,0}, {1,-1}, {0,-1}};
 
@@ -107,6 +108,56 @@ public class lec001{
         int ans = floodFill_01(0,0,n-1,m-1,vis, dir, dirN, "");
         System.out.println(ans);
     }
+
+
+    // Leetcode 62: Unique Path
+    class Solution {
+    
+    public boolean inRange(int i, int j, int n, int m){
+        if(i < 0 || i >= n || j < 0 || j >= m)
+            return false;
+        return true;
+    }
+    
+    public int mazePath_01(int sr, int sc, int dr, int dc, int [][] dir, int [][] dp){
+        if(sr == dr && sc == dc){
+            // System.out.println(asf);
+            return dp[sr][sc] = 1;
+        }
+        
+        if(dp[sr][sc] != 0){
+            return dp[sr][sc];
+        }
+        
+        int count  = 0;
+        for(int d = 0; d < dir.length; d++){
+            int r = sr + dir[d][0];
+            int c = sc + dir[d][1];
+
+            if(inRange(r,c,dr + 1, dc + 1)){
+                count += mazePath_01(r,c, dr, dc, dir, dp);
+            }
+        }
+        return dp[sr][sc] = count;
+
+    }
+    
+    public int mazePath(int n, int m){
+        
+       
+        int [][] dir = {{0,1}, {1,0}};
+
+        // int ans = mazePath_01(0,0,n-1,m-1,dir, dirN, "");
+        int [][] dp = new int[n][m];
+        int ans = mazePath_01(0,0,n-1,m-1,dir,dp);
+        return ans;
+    }
+    
+   
+    public int uniquePaths(int n, int m) {
+        return mazePath(n,m);
+    }
+}
 
     public static void main(String [] args){
         // mazePath();
