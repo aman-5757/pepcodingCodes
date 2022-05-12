@@ -18,7 +18,7 @@ public class lec002_RecursionTree{
 
     public static void main(String [] args){
         int [] coins = {2,3,5,7};
-        int tar = 10;
+        int tar = 15;
         int ans = coinChangePermInf(coins, tar, "");
         System.out.println("Count is -> " + ans);
     }
