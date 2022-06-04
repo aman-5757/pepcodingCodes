@@ -34,21 +34,28 @@ class Solution {
     }
     
     public void reorderList(ListNode head) {
-        if(){
-            
+        if(head == null || head.next == null){
+            return;
         }
         
         ListNode mid = middle(head);
         ListNode nH = mid.next;
         mid.next = null;
         
-        reverseList(nH);
+        nH = reverseList(nH);
         
         ListNode c1 = head;
         ListNode c2 = nH;
         
-        while(){
+        while( c2 != null){
+            ListNode s1 = c1.next;
+            ListNode s2 = c2.next;
             
+            c1.next = c2;
+            c2.next = s1;
+            
+            c1 = s1;
+            c2 = s2;
         }
         
     }
