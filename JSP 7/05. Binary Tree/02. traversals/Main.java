@@ -38,9 +38,24 @@ public class Main{
         preorder(root.right);
     }
 
-    public static void inorder(Node root){}
+    public static void inorder(Node root){
+        if(root == null){
+            return;
+        }
+        inorder(root.left);
+        System.out.print(root.data+" ");
+        inorder(root.right);
+    }
 
-    public static void postorder(Node root){}
+    public static void postorder(Node root){
+        if(root == null){
+            return;
+        }
+        postorder(root.left);
+        postorder(root.right);
+        System.out.print(root.data+" ");
+
+    }
 
 
 
@@ -88,7 +103,19 @@ public class Main{
         }
 
         //tree created  -- access with root
+        System.out.print("Preorder --  ");
         preorder(root);
+        System.out.println();
+
+
+        System.out.print("Inorder --  ");
+        inorder(root);
+        System.out.println();
+
+
+        System.out.print("Postorder --  ");
+        postorder(root);
+        System.out.println();
 
         
 
