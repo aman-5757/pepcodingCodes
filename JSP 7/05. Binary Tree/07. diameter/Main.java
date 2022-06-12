@@ -107,6 +107,42 @@ public class Main {
     return Math.max(leftDia, Math.max(rightDia, acrossDia));
   }
 
+
+
+    // Method 2 -------------------------------
+    public static class pair{
+        int h;
+        int d;
+        pair(){}
+        pair(int h, int d){
+            this.h = h;
+            this.d = d;
+        }
+    }
+
+
+    //h, d
+    public static pair diameter02(Node node){
+        if(node == null){
+            return new pair(-1, 0);
+        }
+
+        pair lp = diameter02(node.left);
+        pair rp = diameter02(node.right);
+
+        pair myPair = new pair();
+
+        myPair.h = Math.max(lp.h, rp.h) + 1;
+        int accross = lp.h + rp.h + 2;
+        myPair.d =  Math.max(accross, Math.max(lp.d, rp.d));
+
+        //myPair values done
+        return myPair;
+    }
+
+
+
+
   public static void main(String[] args) throws Exception {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     int n = Integer.parseInt(br.readLine());
@@ -123,8 +159,9 @@ public class Main {
     Node root = construct(arr);
 
     int diameter = 0;
-    diameter = diameter1(root);
-    System.out.println(diameter);
+    // diameter = diameter1(root);
+    pair ans  = diameter02(root);
+    System.out.println(ans.d);
   }
 
 }
