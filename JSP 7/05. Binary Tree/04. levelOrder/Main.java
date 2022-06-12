@@ -57,6 +57,70 @@ public class Main{
     }
 
 
+    public static void levelOrder_lineWise_1(Node node){
+        Queue<Node> qu = new LinkedList<>();
+
+        //seeding -- init
+        qu.add(node);
+        qu.add(null);
+
+
+        while(qu.size() != 0){
+            if(qu.size() == 1 && qu.peek() == null)
+                break;
+            //remove
+            Node rem = qu.remove();
+            if(rem == null){
+                System.out.println();
+                qu.add(null);
+                continue;
+            }
+
+            //work -- print
+            System.out.print(rem.data + " ");
+
+            //add child if possible
+            if(rem.left != null)
+                qu.add(rem.left);
+            
+            if(rem.right != null)
+                qu.add(rem.right);
+
+
+        }
+
+    }
+
+
+    public static void levelOrder_twoLoop(Node node){
+        System.out.println("Inside 3rd method");
+        Queue<Node> qu = new LinkedList<>();
+
+        //seeding
+        qu.add(node);
+
+        while(qu.size() != 0){
+            int size = qu.size();
+
+            while(size-- > 0){
+                Node rem = qu.remove();
+
+                //work -- print
+                System.out.print(rem.data + " ");
+
+                //add child if possible
+                if(rem.left != null)
+                    qu.add(rem.left);
+                
+                if(rem.right != null)
+                    qu.add(rem.right);
+            }
+
+            System.out.println();
+        }
+    }
+
+
     public static void main(String [] args){
         Integer [] arr = {50,25,12, null, null, 37, 30, null, null, null, 75,62, null, 70, null, null, 87, null, null};
         int idx = 0;
@@ -102,7 +166,9 @@ public class Main{
         }
 
         //tree created -- access at root
-        levelOrder(root);
+        // levelOrder(root);
+        // levelOrder_lineWise_1(root);
+        levelOrder_twoLoop(root);
 
 
     }
