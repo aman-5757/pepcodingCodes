@@ -58,12 +58,34 @@ public class Main {
   }
 
   //height function =======================================
+    public static int height(Node node){
+    int maxHeight = -1;
+    for(Node child : node.children){
+        maxHeight = Math.max(maxHeight, height(child));
+    }
+    //final Height for me
+    maxHeight++;
+    return maxHeight;
+    
+    }
 
 
 
 
 
   //max function =======================================
+ public static int max(Node node){
+    int maxVal = -(int)1e9;     //Integer.MIN_VALUE
+    for(Node child : node.children){
+        maxVal = Math.max(maxVal, max(child));
+    }
+    //compare for me
+    maxVal = Math.max(maxVal, node.data);
+    return maxVal;
+    
+    }
+
+
 
   public static void main(String[] args) throws Exception {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
