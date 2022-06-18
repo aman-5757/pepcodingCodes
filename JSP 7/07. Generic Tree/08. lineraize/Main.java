@@ -143,12 +143,14 @@ public class Main {
     }
   }
     
-    public static Node findTail(Node slc){
-        //write your code here
-        
-        
-        
+    public static Node findTail(Node node){
+        while(node.children.size() != 0){
+            node = node.children.get(0);
+        }
+        return node;
     }
+    
+    
   public static void linearize(Node node){
     for(Node c : node.children){
         linearize(c);
