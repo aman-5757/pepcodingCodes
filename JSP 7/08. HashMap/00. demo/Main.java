@@ -16,6 +16,13 @@ public class Main{
         System.out.println(hm);
         hm.put("USA", 2);
 
+
+        /*
+        Special Case incr. value of India by 1
+        */
+
+        hm.put("India", hm.get("India")+1);
+
         //Size()
         int size = hm.size();
         // System.out.println(size);
