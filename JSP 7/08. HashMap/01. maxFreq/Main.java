@@ -13,15 +13,17 @@ public class Main {
         for(int i = 0; i<s.length(); i++){
             char ch = s.charAt(i);
             
-            if(hm.containsKey(ch)){
-                //update
-                int value = hm.get(ch);
-                hm.put(ch, value + 1);
-            }
-            else{
-                //add
-                hm.put(ch, 1);
-            }
+            // if(hm.containsKey(ch)){
+            //     //update
+            //     int value = hm.get(ch);
+            //     hm.put(ch, value + 1);
+            // }
+            // else{
+            //     //add+
+            //     hm.put(ch,0 + 1);
+            // }
+            
+            hm.put(ch, hm.getOrDefault(ch,0)+1);
             
         }
         
