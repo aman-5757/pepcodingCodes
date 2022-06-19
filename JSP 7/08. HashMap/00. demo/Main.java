@@ -11,9 +11,11 @@ public class Main{
         hm.put("China", 14200);
         hm.put("USA", 84200);
         hm.put("Bangladesh", 44200);
-        hm.put("Pak", 8200);
+        // hm.put("Pak", 8200);
 
-        System.out.println(hm);
+        boolean isPresent = hm.containsKey("Pak");
+
+        System.out.println(isPresent);
         hm.put("USA", 2);
 
 
